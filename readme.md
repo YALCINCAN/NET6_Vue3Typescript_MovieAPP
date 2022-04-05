@@ -10,20 +10,25 @@
 - Role Based Authorization
 - Database Seeding
 - Custom Exception Handling Middleware,
-- Caching (Memory and Redis single interface configure from appsettings.json file example using => Business Category Manager GetAllAsync method.)
+- Caching (Memory and Redis single interface configure from appsettings.json file example using => Business Concrete Category Manager)
 - Complete User Management  (Register / Generate Token / Forgot Password / Confirmation Mail)
 - Logging (Serilog),Validation (Fluent Validation),Transaction,Exception,Performance with Aspects (Autofac,Castle.DynamicProxy)
 
 ## How To Start .Net API
 
 For api, you must edit the appsettings.json file before typing these commands.
-I used postgresql as database but you can change it in the program.cs file  
+I used postgresql as database but you can change it
+
+Docker added you can start project with docker, first you must look docker compose yaml file rediscache settings vs. and write docker compose -up 
+
 
 ```sh
-dotnet ef migrations add CreateDatabase --context MovieContext --project "DataAccess" --startup-project "WebAPI"
 dotnet ef database update --context MovieContext --project "DataAccess" --startup-project "WebAPI"
 ```
+
 After these commands, a database will be created. 
+
+
 Default Admin Account : 
 
 ```sh

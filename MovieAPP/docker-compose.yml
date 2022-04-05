@@ -12,6 +12,7 @@ services:
   moviedb:
     image: postgres
     container_name: moviedb
+    restart : always
     ports:
       - 5432:5432
     environment:
@@ -20,6 +21,7 @@ services:
       - postgres_volume:/var/lib/postgresql/data
   webapi:
     image: webapi
+    restart: always
     build:
       context: .
       dockerfile: WebAPI/Dockerfile

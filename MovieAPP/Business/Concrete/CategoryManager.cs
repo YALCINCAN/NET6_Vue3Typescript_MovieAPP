@@ -40,12 +40,21 @@ namespace Business.Concrete
                 return new DataResponse<IEnumerable<Category>>(data, 200);
             }
             var categories = await _categoryRepository.GetAllAsync();
-            await _cacheService.SetAsync(key, categories);
+            if (categories.Any())
+            {
+                await _cacheService.SetAsync(key, categories);
+            }
             return new DataResponse<IEnumerable<Category>>(categories, 200);
         }
 
         public async Task<IResponse> GetByIdAsync(int id)
         {
+            var key = $"ICategoryService.GetById({id})";
+            var data = await _cacheService.GetAsync<Category>(key);
+            if (data != null)
+            {
+                return new DataResponse<Category>(data, 200);
+            }
             var category = await _categoryRepository.GetByIdAsync(id);
             if (category == null)
             {
@@ -53,6 +62,7 @@ namespace Business.Concrete
             }
             else
             {
+                await _cacheService.SetAsync(key, category);
                 return new DataResponse<Category>(category, 200);
             }
         }
@@ -62,6 +72,7 @@ namespace Business.Concrete
             var category = _mapper.Map<Category>(model);
             category.Slug = SlugHelper.Slugify(model.Name);
             var addedcategory = await _categoryRepository.AddAsync(category);
+            await _cacheService.RemoveAsync("ICategoryService.GetAllAsync");
             return new DataResponse<Category>(addedcategory, 200, Messages.AddedSuccesfully);
         }
 
@@ -74,6 +85,7 @@ namespace Business.Concrete
                 var updatedcategory = _mapper.Map(model, category);
                 updatedcategory.Slug = SlugHelper.Slugify(model.Name);
                 await _categoryRepository.UpdateAsync(updatedcategory);
+                await _cacheService.RemoveAsync("ICategoryService.GetAllAsync");
                 return new SuccessResponse(200, Messages.UpdatedSuccessfully);
             }
             else
@@ -87,6 +99,7 @@ namespace Business.Concrete
             if (category != null)
             {
                 await _categoryRepository.RemoveAsync(category);
+                await _cacheService.RemoveAsync($"ICategoryService.GetAllAsync");
                 return new SuccessResponse(200, Messages.DeletedSuccessfully);
             }
             else

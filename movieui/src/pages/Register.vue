@@ -47,7 +47,7 @@
       <q-input
         outlined
         color="primary"
-        type="email"
+        type="text"
         label-color="white"
         v-model="registercredentials.fullName"
         class="auth tw-w-full sm:tw-w-2/3"

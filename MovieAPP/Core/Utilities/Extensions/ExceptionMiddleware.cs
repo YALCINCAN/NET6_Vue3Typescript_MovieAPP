@@ -48,7 +48,7 @@ namespace Core.Utilities.Extensions
                 IEnumerable<ValidationFailure> errors;
                 errors = ((ValidationException)e).Errors;
                 httpContext.Response.StatusCode = 400;
-                var validationerror = JsonConvert.SerializeObject(new ErrorResponse(400, errors.Select(x => x.ErrorMessage).ToList()));
+                var validationerror = JsonConvert.SerializeObject(new ErrorResponse(400, errors.Select(x => x.ErrorMessage).ToList()), new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver()});
                 return httpContext.Response.WriteAsync(validationerror);
             }
             

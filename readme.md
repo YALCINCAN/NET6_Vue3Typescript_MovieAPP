@@ -24,7 +24,7 @@ Docker added you can start project with docker, first you must look docker compo
 ```sh
 docker compose -f "docker-compose.yml" up -d --build
 ```
-
+When the project is up, the migrations run automatically, but you can run it manually with the following command.
 
 ```sh
 dotnet ef database update --context MovieContext --project "DataAccess" --startup-project "WebAPI"

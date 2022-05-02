@@ -19,7 +19,7 @@
 For api, you must edit the appsettings.json file before typing these commands.
 I used postgresql as database but you can change it
 
-Docker added you can start project with docker, first you must look docker compose yaml file rediscache settings vs. and write 
+Docker support added you can start project with docker, first you must look docker compose yaml file rediscache settings eg. and write 
 
 ```sh
 docker compose -f "docker-compose.yml" up -d --build

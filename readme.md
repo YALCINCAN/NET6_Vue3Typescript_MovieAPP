@@ -11,6 +11,7 @@
 - Response Wrappers
 - Action Filters
 - Automapper
+- Docker
 - Net Core Identity with JWT Authentication,Refresh Token
 - Role Based Authorization
 - Database Seeding

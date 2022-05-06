@@ -2,11 +2,15 @@
 
 <img alt="Movie" src="assets/Movie.gif"> </img>
 
-## Features
+**<h2 align="center">Features</p>**
+
+## Backend
+- .NET6
 - Entity Framework Core – Code First
 - Repository Pattern
 - Response Wrappers
 - Action Filters
+- Automapper
 - Net Core Identity with JWT Authentication,Refresh Token
 - Role Based Authorization
 - Database Seeding
@@ -14,6 +18,16 @@
 - Caching (Memory and Redis single interface configure from appsettings.json file example using => Business Concrete Category Manager)
 - Complete User Management  (Register / Generate Token / Forgot Password / Confirmation Mail)
 - Logging (Serilog),Validation (Fluent Validation),Transaction,Exception,Performance with Aspects (Autofac,Castle.DynamicProxy)
+
+## Frontend
+- Vue3
+- Composition API
+- Typescript
+- Vuelidate
+- Tailwindcss
+- Pinia
+- Route guards
+- Dashboard
 
 ## How To Start .Net API
 

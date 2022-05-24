@@ -224,7 +224,7 @@ namespace Business.Concrete
             {
                 throw new ApiException(404, Messages.UserNotFound);
             }
-            var username = await _userManager.FindByEmailAsync(model.Username);
+            var username = await _userManager.FindByNameAsync(model.Username);
             if (username != null && user.UserName != model.Username)
             {
                 throw new ApiException(400, Messages.UsernameIsAlreadyExist);

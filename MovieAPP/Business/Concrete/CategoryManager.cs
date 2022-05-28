@@ -85,6 +85,7 @@ namespace Business.Concrete
                 var updatedcategory = _mapper.Map(model, category);
                 updatedcategory.Slug = SlugHelper.Slugify(model.Name);
                 await _categoryRepository.UpdateAsync(updatedcategory);
+		await _cacheService.RemoveAsync($"ICategoryService.GetById({model.Id})");
                 await _cacheService.RemoveAsync("ICategoryService.GetAllAsync");
                 return new SuccessResponse(200, Messages.UpdatedSuccessfully);
             }
@@ -99,6 +100,7 @@ namespace Business.Concrete
             if (category != null)
             {
                 await _categoryRepository.RemoveAsync(category);
+		await _cacheService.RemoveAsync($"ICategoryService.GetById({id})");
                 await _cacheService.RemoveAsync($"ICategoryService.GetAllAsync");
                 return new SuccessResponse(200, Messages.DeletedSuccessfully);
             }
